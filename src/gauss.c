@@ -1,12 +1,7 @@
 #include "gauss.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-/**
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
- */
 int eliminate(Matrix *a, Matrix *b){
 	int i, w, k, j;
 	double x, tmp;
@@ -25,6 +20,9 @@ int eliminate(Matrix *a, Matrix *b){
 					b->data[k][0] = b->data[i][0];
 					b->data[i][0] = tmp;
 				} 
+			}
+			if( a->data[k][k] == 0 ) {
+				return 1;
 			}
 			x = a->data[w][k] / a->data[k][k];
 			for (i = k; i < a->r; i++) {
